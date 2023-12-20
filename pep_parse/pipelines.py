@@ -2,7 +2,7 @@ from collections import defaultdict
 import datetime as dt
 import csv
 
-from constants import DATETIME_FORMAT, RESULTS_DIR_NAME, BASE_DIR
+from pep_parse.settings import DATETIME_FORMAT, RESULTS_DIR_NAME, BASE_DIR
 
 
 class PepParsePipeline:
@@ -33,5 +33,7 @@ class PepParsePipeline:
                 quoting=csv.QUOTE_NONE
             )
             writer.writeheader()
-            for status, count in self.status_count.items():
-                writer.writerow({'Status': status, 'Count': count})
+
+            rows_to_write = [{'Status': status, 'Count': count}
+                             for status, count in self.status_count.items()]
+            writer.writerows(rows_to_write)
