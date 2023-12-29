@@ -7,4 +7,4 @@
 
 ## Использованные технологии
 - Scrapy
-- Sqlalchemy
+- SqlAlchemy
